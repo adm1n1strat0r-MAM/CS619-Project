@@ -1,0 +1,158 @@
+﻿@using eCinemaMS.Models.ViewModels.ReservationViewModels
+@using Microsoft.Extensions.Options
+@inject IOptions<eCinemaMS.Data.StripeSettings> Stripe
+@inject SignInManager<ApplicationUser> signInManager;
+@model bookingVM
+
+@{
+    ViewData["Title"] = "Select Tickets";
+}
+
+<div class="container">
+        <h3>Select Ticket</h3>
+</div>
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Booking" method="post">
+                <div class=" text-center">
+                    <img class="border-info" style="max-width:150px" id="PreviewImageUrl" />
+                </div>
+                <br />
+                <div >
+                    <label asp-for="movie.ImageUrl" id="ImageUrl" class="form-control-plaintext" style="display:none"></label>
+                    <input asp-for="movie.ImageUrl" id="ImageUrl" class="form-control" readonly style="display:none"/>
+                    <span asp-validation-for="movie.ImageUrl" class="text-danger" style="display:none"></span>
+                        
+                    <h3>@Model.movie.Name</h3>
+                    <p>@Model.movie.Description</p>
+                    <p>Showing on @Model.screening.ScreeningStart.ToLongDateString() at @Model.screening.ScreeningStart.ToLongTimeString() in @Model.movie.cinema.Name</p>
+                    <input asp-for="screening.Id" style="display : none;"/>
+                </div>
+
+                <p>Select the number and type of tickets you wish to buy. Please note seats are reserved on a best available basis. You can buy a maximum of 10 tickets per transaction.</p>
+                <p>All voucher tickets will require proof of identification when collecting tickets or having tickets checked by ushers.</p>
+                <div class="form-control">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Ticket type</th>
+                                <th>Cost</th>
+                                <th>Number of Tickets</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    Standard
+                                </td>
+                                <td class="align-middle">
+                                    <input type="number" asp-for="cost" value="799" readonly style="width : 140px;" />
+                                </td>
+                                <td class="align-middle">
+                                    <input type="number" asp-for="qty" value="0" style="width : 140px;"/>
+                                </td>
+                                <td class="align-middle">
+                                     <input type="number" asp-for="subtotal" value="0.00" readonly style="width : 140px;" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br/>
+                <br/>
+                <div class="seatContainer">
+                    <ul class="showcase">
+                      <li>
+                        <div class="seat"></div>
+                        <small>Available</small>
+                      </li>
+                      <li>
+                        <div class="seat selected"></div>
+                        <small>Selected</small>
+                      </li>
+                      <li>
+                        <div class="seat sold"></div>
+                        <small>Sold</small>
+                      </li>
+                    </ul>
+                    <div class="container ">
+                          <div class="screen"></div>
+
+                          <div class="row">
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                          </div>
+
+                          <div class="row">
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat sold"></div>
+                            <div class="seat sold"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                          </div>
+                          <div class="row">
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat sold"></div>
+                            <div class="seat sold"></div>
+                          </div>
+                          <div class="row">
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                          </div>
+                          <div class="row">
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat sold"></div>
+                            <div class="seat sold"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                          </div>
+                          <div class="row">
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat"></div>
+                            <div class="seat sold"></div>
+                            <div class="seat sold"></div>
+                            <div class="seat sold"></div>
+                            <div class="seat"></div>
+                          </div>
+                      </div>
+                </div>
+                    <script src="//checkout.stripe.com/v2/checkout.js"
+                    class="stripe-button"
+                    data-key="@Stripe.Value.PublishableKey"
+                    data-locale="auto"
+                    data-description="Sample Charge">
+                    </script>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>

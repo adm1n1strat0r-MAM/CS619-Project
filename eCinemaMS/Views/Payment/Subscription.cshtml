@@ -1,0 +1,22 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+
+<h3 style="text-align:center">eCinema Subscription Plan</h3>
+@*<p style="text-align:center">Resize the browser window to see the effect.</p>*@
+
+<center>
+<div class="columns">
+  <ul class="price">
+    <li class="header" style="background-color:#04AA6D">Pro</li>
+    <li class="grey">PKR 4999 only</li>
+    <li>Duration 1 Year</li>
+    <li>Special Discount</li>
+    <li>New Movie Update</li>
+    <li>Gifts</li>
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("Member")){
+        <li class="grey">Subscribe</li>
+    }else{
+        <li class="grey"><a asp-action="SubPay" class="button">Upgrade</a></li>
+    }
+  </ul>
+</div>
+</center>

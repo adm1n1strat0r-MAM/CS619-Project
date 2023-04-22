@@ -1,0 +1,45 @@
+﻿@using eCinemaMS.Models.ViewModels.AccountsViewModels;
+@model LoginUserVM
+
+@{
+    ViewBag.Titel = "Login";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4 offset-4">
+            <div class="text-center">
+                <h1 class="heading">User Login Form</h1>
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form method="post" asp-action="Login" asp-route-returnurl="@ViewBag.ReturnUrl">
+                <div class="mb-3">
+                    <label asp-for="Email"></label>
+                    <input type="email" asp-for="Email" placeholder="Email" class="form-control" autocomplete="off" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Password"></label>
+                    <input id="password" type="password" asp-for="Password" placeholder="Password" class="form-control" autocomplete="off" />
+                    <i id="Pshow" class="bi bi-eye float-end" style="margin-top:-30px; margin-right: 10px; cursor: pointer"></i>
+                    <i id="Phide" class="bi bi-eye-slash float-end" style="margin-top:-30px; margin-right: 10px; display:none; cursor: pointer"></i>
+                </div>
+                <div class="mb-4">
+
+                    <input type="checkbox" asp-for="isRemember" class="" />
+                    <label asp-for="isRemember">Remember me</label>
+                    <input type="submit" class="btn btn-block btn-outline-primary float-end" value="Login" />
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-6">
+                    <a clclass="text-primary float-start" asp-action="ForgotUserName">Forgot Usernaem?</a>
+                </div>
+                <div class="col-6">
+                    <a class="text-primary float-end" asp-action="ForgotPassword">Forgot Password?</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,34 @@
+﻿@using eCinemaMS.Models.ViewModels.ReservationViewModels
+@model ScreeningVM
+
+@{
+    ViewData["Title"] = "Create a Srceening";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2 offset-sm-2">
+        <p>
+            <h3>Create a new Movie Screening</h3>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Screening" method="post">                    
+                    <div>
+                        <label asp-for="MovieId" class="form-label"></label>
+                        <select asp-for="MovieId" class="form-control" asp-items="ViewBag.movies"></select>
+                    </div>
+                    <br/>
+                    <div>
+                        <label asp-for="ScreeningStart" class="form-label"></label>
+                        <input asp-for="ScreeningStart" class="form-control"/>
+                    </div>
+                    <br/>
+                    <div class="form-control">
+                        <input type="submit" value="Add Screening" class="btn btn-outline-success float-end" />
+                        <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Go Home</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

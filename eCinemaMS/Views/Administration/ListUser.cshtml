@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ApplicationUser>
+
+@{
+    ViewBag.Title = "All User";
+}
+
+@if (Model.Any())
+{
+            <div class="container">
+             <div class="row">
+                <div class="col-md-6">
+                    <h3 class="float-start">All Users </h3>
+                </div>
+                <div class="col-md-6">
+                    <a asp-controller="Account" asp-action="SignUp" class="btn btn-outline-success btn-lg mb-1 float-end"><i class="bi bi-plus-circle">Add New</i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                            <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="align-middle">
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td class="align-middle">
+                                @Html.DisplayFor(modelItem => item.FullName)
+                            </td>
+                            <td class="align-middle">
+                                <p>@Html.DisplayFor(modelItem => item.PhoneNumber)</p>
+                            </td>
+                            <td class="align-middle">
+                                <form asp-action="Delete" asp-route-id="@item.Id">
+                                    <button type="submit" class="btn btn-danger text-white"><i class="bi bi-trash"></i>Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+}
+else
+{
+
+    <div class="container">
+         <div class="row">
+            <div class="col-md-6">
+                <h3 class="float-start">All User </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <table class="table">
+                <thead>
+                    <tr>
+                        No users created yet
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="align-middle">
+                            User the Button below to create a user
+                            <a class="btn btn-outline-info" asp-action="SignUp" asp-controller="Account"><i class="bi bi-eye"></i>Detail</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

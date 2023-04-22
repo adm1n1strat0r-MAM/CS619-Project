@@ -1,0 +1,42 @@
+﻿@model Producer
+
+@{
+    ViewData["Title"] = "Add New Actor";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Add a New Actor</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-control text-center">
+                        <img class="border-info rounded-circle" style="max-width:150px" id="profilePicturePreview" />
+                    </div>
+                    <br />
+                    <div class="form-control">
+                        <label asp-for="profilePictureUrl" class="form-control-plaintext"></label>
+                        <input asp-for="profilePictureUrl" class="form-control" />
+                        <span asp-validation-for="profilePictureUrl" class="text-danger"></span>
+
+                        <label asp-for="fullName" class="form-control-plaintext"></label>
+                        <input asp-for="fullName" class="form-control" />
+                        <span asp-validation-for="fullName" class="text-danger"></span>
+
+                        <label asp-for="Bio" class="form-control-plaintext"></label>
+                        <textarea asp-for="Bio" class="form-control"></textarea>
+                        <span asp-validation-for="Bio" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-control">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-end" />
+                        <a asp-action="index" class="btn btn-outline-secondary">Show All</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

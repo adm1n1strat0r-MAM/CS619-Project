@@ -1,0 +1,43 @@
+﻿@model IEnumerable<IdentityRole>
+@*Define ViewData*@
+@{
+    ViewData["Title"] = "List of Roles";   
+}
+@*Write HtmlCode*@
+
+
+<div class="container">
+     <div class="row">
+        <div class="col-md-6">
+            <h3 class="float-start">Roles </h3>
+        </div>
+        <div class="col-md-6">
+            <a asp-controller="Administration" asp-action="createrole" class="btn btn-outline-success btn-lg mb-1 float-end"><i class="bi bi-plus-circle">Add New</i></a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-md-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Role Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td class="align-middle">
+                            <a class="btn btn-outline-primary" asp-action="EditUserInRole" asp-controller="Administration" asp-route-roleId="@item.Id"><i class="bi bi-pencil-square"></i>Add or Remove User</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

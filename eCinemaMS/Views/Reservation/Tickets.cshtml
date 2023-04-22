@@ -1,0 +1,30 @@
+﻿@using eCinemaMS.Models.ViewModels.ReservationViewModels
+@model List<reservationVM>
+
+<h1>My Reservations</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Reservation ID</th>
+            <th>Screening Time</th>
+            <th>Cost</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Paid</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model)
+        {
+            <tr>
+                <td>@reservation.Id</td>
+                    <td>@reservation.ScreeningTime.ToLongDateString() @reservation.ScreeningTime.ToLongTimeString()</td>
+                <td>@reservation.cost</td>
+                <td>@reservation.qty</td>
+                <td>@reservation.subtotal</td>
+                <td>Paid</td>
+            </tr>
+        }
+    </tbody>
+</table>

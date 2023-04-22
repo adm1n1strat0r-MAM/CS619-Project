@@ -1,0 +1,44 @@
+﻿@model Producer
+
+@{
+    ViewData["Title"] = "Delete Producer";
+}
+
+<div class="container">
+        <h3>Delete confirmation for @Model.fullName</h3>
+</div>
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                    <div class=" text-center">
+                        <img class="border-info rounded-circle" style="max-width:150px" id="profilePicturePreview" />
+                        <p>@Model.fullName</p>
+                    </div>
+                    <br />
+                    <div >
+                        <label asp-for="profilePictureUrl" class="form-control-plaintext" style="display:none"></label>
+                        <input asp-for="profilePictureUrl" class="form-control" readonly style="display:none"/>
+                        <span asp-validation-for="profilePictureUrl" class="text-danger" style="display:none"></span>
+                        @*
+                        <label asp-for="fullName" class="form-control-plaintext"></label>
+                        <input asp-for="fullName" class="form-control" readonly />
+                        <span asp-validation-for="fullName" class="text-danger"></span>*@
+
+                        <b><label asp-for="Bio" class="form-control-plaintext"></label></b>
+                        @*<textarea asp-for="Bio" class="form-control" readonly ></textarea>*@
+                        <p>@Model.Bio</p>
+                        <span asp-validation-for="Bio" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-control">
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="submit" value="Confirm" class="btn btn-danger float-end" />
+                        </form>
+                        <a asp-action="index" class="btn btn-outline-secondary">Show All</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

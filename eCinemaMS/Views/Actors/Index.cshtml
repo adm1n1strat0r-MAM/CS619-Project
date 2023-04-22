@@ -1,0 +1,64 @@
+﻿@*Define Model*@
+@inject SignInManager<ApplicationUser> signInManager;
+@model IEnumerable<Actor>
+
+@*Define ViewData*@
+@{
+    ViewData["Title"] = "List of Actors";   
+}
+@*Write HtmlCode*@
+
+
+<div class="container">
+     <div class="row">
+        <div class="col-md-6">
+            <h3 class="float-start">Actors </h3>
+        </div>
+        <div class="col-md-6">
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                <a asp-controller="Actors" asp-action="Create" class="btn btn-outline-success btn-lg mb-1 float-end"><i class="bi bi-plus-circle">Add New</i></a>
+            }
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.profilePictureUrl)</th>
+                    <th>@Html.DisplayNameFor(model => model.fullName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Bio)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model){
+                    <tr>
+                        <td class="align-middle">
+                            <img class="rounded-circle" src="@item.profilePictureUrl" alt="@item.fullName" style="max-width:150px" />
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.fullName)
+                        </td>
+                        <td class="align-middle overflow-hidden">
+                            <p class="p">@Html.DisplayFor(modelItem => item.Bio)</p>
+                        </td>
+                        <td class="align-middle">
+                            @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                            {
+                                <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Edit</a>
+                            }
+                            <a class="btn btn-outline-info" asp-action="Detail" asp-route-id="@item.Id"><i class="bi bi-eye"></i>Detail</a>
+                            @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                            {
+                                <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@using eCinemaMS.Models.ViewModels.AdminVM
+@model RoleVM
+
+@{
+    ViewBag.Title = "Create New Role";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Create new Role</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="CreateRole">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-control">
+                        <label asp-for="role" class="form-control-plaintext"></label>
+                        <input asp-for="role" class="form-control" />
+                        <span asp-validation-for="role" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-control">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-end" />
+                        <a asp-controller="Administration" asp-action="index" class="btn btn-outline-secondary">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

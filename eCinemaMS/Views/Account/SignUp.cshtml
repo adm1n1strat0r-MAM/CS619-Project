@@ -1,0 +1,54 @@
+﻿@using eCinemaMS.Models.ViewModels.AccountsViewModels;
+@model SignUpUserVM;
+
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="text-center">
+                <h1 class="heading">User Registration Form</h1>
+            </div>
+
+            <form method="post" asp-action="SignUp">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="mb-3">
+                    <label asp-for="UserName"></label>
+                    <input type="text" asp-for="UserName" placeholder="User Name" class="form-control" autocomplete="off"/>
+                    @*<span asp-validation-for="UserName" class="text-danger"></span>*@
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Phone"></label>
+                    <input type="text" asp-for="Phone" placeholder="Mobile Number" class="form-control" autocomplete="off" />
+                    @*<span asp-validation-for="Phone" class="text-danger"></span>*@
+                </div>
+                <div class="mb-3">
+                    <label asp-for="CNIC"></label>
+                    <input type="text" asp-for="CNIC" placeholder="Enter your CNIC Number with Dashes" class="form-control" autocomplete="off" />
+                    @*<span asp-validation-for="CNIC" class="text-danger"></span>*@
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email"></label>
+                    <input type="text" asp-for="Email" placeholder="abc123@gmail.com" class="form-control" autocomplete="off" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Password"></label>
+                    <input type="password" asp-for="Password" placeholder="Enter Your Password" class="form-control" autocomplete="off" />
+                    @*<span asp-validation-for="Password" class="text-danger"></span>*@
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input type="password" asp-for="ConfirmPassword" placeholder="Confirm Your Password" class="form-control" autocomplete="off" />
+                    @*<span asp-validation-for="ConfirmPassword" class="text-danger"></span>*@
+                </div>
+                <div class="form">
+                    <input type="submit" asp-controller="Home" asp-action="Index" class="btn btn-outline-warning btn-lg mb-1 float-start" value="Cancel" />
+                    <input type="submit" class="btn btn-outline-success btn-lg mb-1 float-end" value="Register" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
